@@ -5,9 +5,22 @@ public class ThirdPersonController : MonoBehaviour
 {
     [Header("Movement")]
     public float moveSpeed = 5f;
+    public float minMoveSpeed = 1.5f;
+    public float walkSpeed = 2.5f;
+    public float runSpeed = 5f;
+    public float sprintSpeed = 8f;
     public float rotationSpeed = 10f;
-    public float jumpHeight = 1.5f;
+    public float jumpHeight = 1f;
     public float gravity = -20f;
+    public float coyoteTime = 2f;
+    private float coyoteTimeTimer;
+    bool alreadyJumped;
+    private float jumpBufferTimer;
+    public float jumpBuffer = 0.12f;
+    private bool jumpHeld;
+    public float addedJumpForce = 0.1f;
+    public float jumpForceTime = 1f;
+    private float jumpForceTimeTimer;
 
     [Header("References")]
     public Transform cameraTransform;
@@ -19,6 +32,7 @@ public class ThirdPersonController : MonoBehaviour
 
     private float verticalVelocity;
 
+
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
@@ -27,6 +41,30 @@ public class ThirdPersonController : MonoBehaviour
     private void Update()
     {
         HandleMovement();
+        holdJump();
+        coyoteTimeTimer += Time.deltaTime;
+        if (controller.isGrounded)
+        {
+            coyoteTimeTimer = 0;
+            alreadyJumped = false;
+            if(jumpBufferTimer > 0)
+            {
+                Jump();
+                jumpBufferTimer = 0;
+            }
+        }
+
+        jumpBufferTimer -= Time.deltaTime;
+
+    }
+    public void holdJump()
+    {
+        jumpForceTimeTimer += Time.deltaTime;
+
+        if (jumpHeld && jumpForceTimeTimer < jumpForceTime)
+        {
+            verticalVelocity += addedJumpForce * Time.deltaTime;
+        }
     }
 
     // Called by the Input System
@@ -40,17 +78,56 @@ public class ThirdPersonController : MonoBehaviour
     {
         lookInput = context.ReadValue<Vector2>();
     }
+    public bool coyoteTimeTest(bool onGround)
+    {
+        if (coyoteTimeTimer < coyoteTime && alreadyJumped == false) return true;
+        else return false;
+
+    }
+    public void Jump()
+    {
+        alreadyJumped = true;
+        verticalVelocity = Mathf.Sqrt(jumpHeight * -2f * gravity);
+                    jumpHeld = true;
+            jumpForceTimeTimer = 0;
+    }
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (context.performed && controller.isGrounded)
+        if (context.performed && coyoteTimeTest(true))
         {
-            verticalVelocity = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            Jump();
+        }
+        if(context.performed && !controller.isGrounded)
+        {
+            jumpBufferTimer = jumpBuffer;
+        }
+        if (context.canceled)
+        {
+            jumpHeld = false;
         }
     }
 
+
     private void HandleMovement()
     {
+        float inputMagnitude = moveInput.magnitude;
+
+        //alla oleva kohta ei käytössä!!
+        float currentMoveSpeed;
+        if(inputMagnitude < 0.3f)
+        {
+            currentMoveSpeed = walkSpeed;
+        }
+        else if (inputMagnitude < 0.7f)
+        {
+            currentMoveSpeed = runSpeed;
+        }
+        else
+        {
+            currentMoveSpeed = sprintSpeed;
+        }
+
         // Keep the player grounded
         if (controller.isGrounded && verticalVelocity < 0)
         {
@@ -77,7 +154,7 @@ public class ThirdPersonController : MonoBehaviour
             moveDirection.Normalize();
 
         // Move player
-        controller.Move(moveDirection * moveSpeed * Time.deltaTime);
+        controller.Move(moveDirection * moveSpeed * inputMagnitude * Time.deltaTime);
 
         // Rotate player toward movement direction
         if (moveDirection.magnitude > 0.1f)
