@@ -31,6 +31,13 @@ public class ThirdPersonController : MonoBehaviour
     private Vector2 lookInput;
 
     private float verticalVelocity;
+    public LayerMask movingPlatformMask;
+    private bool isPlayerOnMovingPlatform;
+    public MovingPlatform currentPlatform;
+    public RotatingPlatform currentRotatingPlatform;
+
+    private Vector3 lastRotatingPlatformPosition;
+    private Quaternion lastRotatingPlatformRotation;
 
 
     private void Awake()
@@ -40,6 +47,7 @@ public class ThirdPersonController : MonoBehaviour
 
     private void Update()
     {
+        PlatformTest();
         HandleMovement();
         holdJump();
         coyoteTimeTimer += Time.deltaTime;
@@ -56,6 +64,28 @@ public class ThirdPersonController : MonoBehaviour
 
         jumpBufferTimer -= Time.deltaTime;
 
+    }
+    public void PlatformTest()
+    {
+        RaycastHit hit;
+        if(Physics.Raycast(transform.position, Vector3.down,out hit,0.15f, movingPlatformMask))
+        {
+            if(hit.collider.TryGetComponent<MovingPlatform>(out MovingPlatform platform))
+            {
+                isPlayerOnMovingPlatform = true;
+                currentPlatform = platform;
+            }
+            else
+            {
+                isPlayerOnMovingPlatform = false;
+                currentPlatform = null;
+            }
+        }
+        else
+        {
+            isPlayerOnMovingPlatform = false;
+            currentPlatform = null;
+        }
     }
     public void holdJump()
     {
@@ -154,8 +184,12 @@ public class ThirdPersonController : MonoBehaviour
             moveDirection.Normalize();
 
         // Move player
-        controller.Move(moveDirection * moveSpeed * inputMagnitude * Time.deltaTime);
-
+        Vector3 playerMovement = moveDirection * moveSpeed * inputMagnitude * Time.deltaTime;
+        if (isPlayerOnMovingPlatform)
+        {
+            playerMovement += currentPlatform.platformMovement;
+        }
+        controller.Move(playerMovement);
         // Rotate player toward movement direction
         if (moveDirection.magnitude > 0.1f)
         {

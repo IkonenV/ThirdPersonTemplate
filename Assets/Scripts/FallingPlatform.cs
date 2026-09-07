@@ -18,15 +18,14 @@ public class FallingPlatform : MonoBehaviour
     void Update()
     {
         fallDelayTimer -= Time.deltaTime;
-        if(canFall)
+        if(canFall && fallDelayTimer < 0)
         {
             rb.isKinematic = false;
         }
     }
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider other)
     {
-        fallDelayTimer = fallDelay;
         canFall = true;
-
+        fallDelayTimer = fallDelay;
     }
 }
