@@ -186,7 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 930c43e18859d4e038b8b515e653822d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FallingPlatform
-  fallDelay: 0.5
+  fallDelay: 1
 --- !u!65 &4662362982117522875
 BoxCollider:
   m_ObjectHideFlags: 0
