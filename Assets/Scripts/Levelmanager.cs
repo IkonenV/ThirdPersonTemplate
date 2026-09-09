@@ -21,8 +21,7 @@ public class Levelmanager : MonoBehaviour
             //Vector3 desiredHeight = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 50, gameObject.transform.position.z);
             //float speed = Random.Range(5, 10);
             //transform.position = Vector3.Lerp(child.position,desiredHeight,speed);
-            Animator animator = child.GetComponent<Animator>();
-            animator.SetTrigger("Descend");
+
         }
     }
 }
