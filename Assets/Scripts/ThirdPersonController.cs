@@ -34,10 +34,10 @@ public class ThirdPersonController : MonoBehaviour
     public LayerMask movingPlatformMask;
     private bool isPlayerOnMovingPlatform;
     public MovingPlatform currentPlatform;
-    public RotatingPlatform currentRotatingPlatform;
-
-    private Vector3 lastRotatingPlatformPosition;
-    private Quaternion lastRotatingPlatformRotation;
+    public LayerMask fallingPlatformMask;
+    private bool isPlayerOnFallingPlatform;
+    public FallingPlatform currentFallingPlatform;
+ 
 
 
     private void Awake()
@@ -48,6 +48,7 @@ public class ThirdPersonController : MonoBehaviour
     private void Update()
     {
         PlatformTest();
+        FallingPlatformTest();
         HandleMovement();
         holdJump();
         coyoteTimeTimer += Time.deltaTime;
@@ -87,6 +88,30 @@ public class ThirdPersonController : MonoBehaviour
             currentPlatform = null;
         }
     }
+    public void FallingPlatformTest()
+    {
+        RaycastHit hit;
+        if(Physics.Raycast(transform.position, Vector3.down,out hit,0.15f, fallingPlatformMask))
+        {
+            if(hit.collider.TryGetComponent<FallingPlatform>(out FallingPlatform platform))
+            {
+                isPlayerOnFallingPlatform = true;
+                currentFallingPlatform = platform;
+            }
+            else
+            {
+                isPlayerOnFallingPlatform = false;
+                currentFallingPlatform = null;
+            }
+        }
+        else
+        {
+            isPlayerOnFallingPlatform = false;
+            currentFallingPlatform = null;
+        }
+    }
+    
+    
     public void holdJump()
     {
         jumpForceTimeTimer += Time.deltaTime;
@@ -188,6 +213,10 @@ public class ThirdPersonController : MonoBehaviour
         if (isPlayerOnMovingPlatform)
         {
             playerMovement += currentPlatform.platformMovement;
+        }
+        else if (isPlayerOnFallingPlatform)
+        {
+            playerMovement += currentFallingPlatform.platformMovement;
         }
         controller.Move(playerMovement);
         // Rotate player toward movement direction

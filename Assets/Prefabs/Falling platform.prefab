@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2942468229907163527}
   - component: {fileID: 4582428694333182691}
   - component: {fileID: 7161804014518925876}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ GameObject:
   - component: {fileID: 4909312140020859648}
   - component: {fileID: 624531042305398940}
   - component: {fileID: 4662362982117522875}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Falling platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -187,6 +187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FallingPlatform
   fallDelay: 1
+  platformMovement: {x: 0, y: 0, z: 0}
 --- !u!65 &4662362982117522875
 BoxCollider:
   m_ObjectHideFlags: 0
