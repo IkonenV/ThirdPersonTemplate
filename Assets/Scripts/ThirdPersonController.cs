@@ -37,12 +37,14 @@ public class ThirdPersonController : MonoBehaviour
     public LayerMask fallingPlatformMask;
     private bool isPlayerOnFallingPlatform;
     public FallingPlatform currentFallingPlatform;
+    Animator animator;
  
 
 
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     private void Update()
@@ -141,6 +143,7 @@ public class ThirdPersonController : MonoBehaviour
     }
     public void Jump()
     {
+        animator.SetTrigger("Jump");
         alreadyJumped = true;
         verticalVelocity = Mathf.Sqrt(jumpHeight * -2f * gravity);
                     jumpHeld = true;
@@ -168,6 +171,22 @@ public class ThirdPersonController : MonoBehaviour
     {
         float inputMagnitude = moveInput.magnitude;
 
+        if(inputMagnitude > 0.1f)
+        {
+            animator.SetBool("Moving",true);
+        }
+        else
+        {
+            animator.SetBool("Moving",false);
+        }
+        if (controller.isGrounded)
+        {
+            animator.SetBool("Grounded", true);
+        }
+        else
+        {
+            animator.SetBool("Grounded", false);
+        }
         //alla oleva kohta ei käytössä!!
         float currentMoveSpeed;
         if(inputMagnitude < 0.3f)
