@@ -2,26 +2,49 @@ using UnityEngine;
 
 public class Levelmanager : MonoBehaviour
 {
+
     public GameObject currentLevel;
+    public GameObject[] levels;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        ChangeLevel(3);
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        //ChangeLevel(3);
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            Debug.Log("Vaihdetaan leveliin 1");
+            ChangeLevel(1);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            Debug.Log("Vaihdetaan leveliin 2");
+            ChangeLevel(2);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            Debug.Log("Vaihdetaan leveliin 3");
+            ChangeLevel(3);
+        }
     }
     public void ChangeLevel(int desiredLevel)
     {
+        if(currentLevel != null)
+        {
+            foreach(Transform child in currentLevel.transform)
+        {
+            ObstacleSwitch obstacleSwitch = child.GetComponent<ObstacleSwitch>();
+            obstacleSwitch.ChangeLevel(false);
+        }
+        }
+        currentLevel = levels[desiredLevel - 1];
         foreach(Transform child in currentLevel.transform)
         {
-            //Vector3 desiredHeight = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 50, gameObject.transform.position.z);
-            //float speed = Random.Range(5, 10);
-            //transform.position = Vector3.Lerp(child.position,desiredHeight,speed);
-
+            ObstacleSwitch obstacleSwitch = child.GetComponent<ObstacleSwitch>();
+            obstacleSwitch.ChangeLevel(true);
         }
     }
 }
