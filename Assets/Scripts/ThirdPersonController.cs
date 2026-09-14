@@ -38,7 +38,11 @@ public class ThirdPersonController : MonoBehaviour
     private bool isPlayerOnFallingPlatform;
     public FallingPlatform currentFallingPlatform;
     Animator animator;
- 
+    public float knockbackForce = 10f;
+    public float knockbackDuration = 0.2f;
+    private Vector3 knockbackVelocity;
+    private float knockbackTimer;
+    bool isTakingKnockback = false;
 
 
     private void Awake()
@@ -49,6 +53,7 @@ public class ThirdPersonController : MonoBehaviour
 
     private void Update()
     {
+        Knockback();
         PlatformTest();
         FallingPlatformTest();
         HandleMovement();
@@ -67,6 +72,27 @@ public class ThirdPersonController : MonoBehaviour
 
         jumpBufferTimer -= Time.deltaTime;
 
+    }
+    private void Knockback()
+    {
+        if(knockbackTimer > 0)
+        {
+            knockbackTimer -= Time.deltaTime;
+            isTakingKnockback = true;
+        }
+        else
+        {
+            isTakingKnockback = false;
+        }
+    }
+    public void ApplyKnockback(Vector3 direction)
+    {
+        direction.y = 0.01f;
+        direction.z = 0;
+        direction.Normalize();
+
+        knockbackVelocity = direction * knockbackForce;
+        knockbackTimer = knockbackDuration;
     }
     public void PlatformTest()
     {
@@ -236,6 +262,10 @@ public class ThirdPersonController : MonoBehaviour
         else if (isPlayerOnFallingPlatform)
         {
             playerMovement += currentFallingPlatform.platformMovement;
+        }
+        else if (isTakingKnockback)
+        {
+            playerMovement += knockbackVelocity * Time.deltaTime;
         }
         controller.Move(playerMovement);
         // Rotate player toward movement direction

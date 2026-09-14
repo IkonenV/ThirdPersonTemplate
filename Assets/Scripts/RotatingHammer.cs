@@ -2,23 +2,22 @@ using UnityEngine;
 
 public class RotatingHammer : MonoBehaviour
 {
-    public float swingAngle = 60f;
-    public float speed = 1f;
-    public AnimationCurve swingCurve;
-
+    GameObject player;
+    public GameObject hitPoint;
+    void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
     void Update()
     {
-        float t = (Time.time * speed) % 2f;
 
-        float curveTime;
-
-        if (t <= 1f)
-            curveTime = t;
-        else
-            curveTime = 2f - t;
-
-        float angle = swingCurve.Evaluate(curveTime) * swingAngle;
-
-        transform.localRotation = Quaternion.Euler(0,0,angle);
+    }
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            Vector3 direction = player.transform.position - hitPoint.transform.position;
+            player.GetComponent<ThirdPersonController>().ApplyKnockback(direction);
+        }
     }
 }
