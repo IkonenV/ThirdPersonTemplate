@@ -7,11 +7,15 @@ public class FallingPlatform : MonoBehaviour
     private float fallDelayTimer;
     bool canFall;
     Rigidbody rb;
+    private Vector3 lastPosition;
+    public Vector3 platformMovement;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         canFall = false;
         rb = GetComponent<Rigidbody>();
+        lastPosition = gameObject.transform.position;
     }
 
     // Update is called once per frame
@@ -22,6 +26,8 @@ public class FallingPlatform : MonoBehaviour
         {
             rb.isKinematic = false;
         }
+        platformMovement = transform.position - lastPosition;
+        lastPosition = transform.position;
     }
     void OnTriggerEnter(Collider other)
     {

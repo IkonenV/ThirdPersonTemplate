@@ -34,20 +34,23 @@ public class ThirdPersonController : MonoBehaviour
     public LayerMask movingPlatformMask;
     private bool isPlayerOnMovingPlatform;
     public MovingPlatform currentPlatform;
-    public RotatingPlatform currentRotatingPlatform;
-
-    private Vector3 lastRotatingPlatformPosition;
-    private Quaternion lastRotatingPlatformRotation;
+    public LayerMask fallingPlatformMask;
+    private bool isPlayerOnFallingPlatform;
+    public FallingPlatform currentFallingPlatform;
+    Animator animator;
+ 
 
 
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     private void Update()
     {
         PlatformTest();
+        FallingPlatformTest();
         HandleMovement();
         holdJump();
         coyoteTimeTimer += Time.deltaTime;
@@ -87,6 +90,30 @@ public class ThirdPersonController : MonoBehaviour
             currentPlatform = null;
         }
     }
+    public void FallingPlatformTest()
+    {
+        RaycastHit hit;
+        if(Physics.Raycast(transform.position, Vector3.down,out hit,0.15f, fallingPlatformMask))
+        {
+            if(hit.collider.TryGetComponent<FallingPlatform>(out FallingPlatform platform))
+            {
+                isPlayerOnFallingPlatform = true;
+                currentFallingPlatform = platform;
+            }
+            else
+            {
+                isPlayerOnFallingPlatform = false;
+                currentFallingPlatform = null;
+            }
+        }
+        else
+        {
+            isPlayerOnFallingPlatform = false;
+            currentFallingPlatform = null;
+        }
+    }
+    
+    
     public void holdJump()
     {
         jumpForceTimeTimer += Time.deltaTime;
@@ -116,6 +143,7 @@ public class ThirdPersonController : MonoBehaviour
     }
     public void Jump()
     {
+        animator.SetTrigger("Jump");
         alreadyJumped = true;
         verticalVelocity = Mathf.Sqrt(jumpHeight * -2f * gravity);
                     jumpHeld = true;
@@ -143,6 +171,22 @@ public class ThirdPersonController : MonoBehaviour
     {
         float inputMagnitude = moveInput.magnitude;
 
+        if(inputMagnitude > 0.1f)
+        {
+            animator.SetBool("Moving",true);
+        }
+        else
+        {
+            animator.SetBool("Moving",false);
+        }
+        if (controller.isGrounded)
+        {
+            animator.SetBool("Grounded", true);
+        }
+        else
+        {
+            animator.SetBool("Grounded", false);
+        }
         //alla oleva kohta ei käytössä!!
         float currentMoveSpeed;
         if(inputMagnitude < 0.3f)
@@ -188,6 +232,10 @@ public class ThirdPersonController : MonoBehaviour
         if (isPlayerOnMovingPlatform)
         {
             playerMovement += currentPlatform.platformMovement;
+        }
+        else if (isPlayerOnFallingPlatform)
+        {
+            playerMovement += currentFallingPlatform.platformMovement;
         }
         controller.Move(playerMovement);
         // Rotate player toward movement direction

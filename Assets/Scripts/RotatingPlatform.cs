@@ -25,7 +25,7 @@ public class RotatingPlatform : MonoBehaviour
                 rotationTimer = 0f;
 
                 startRotation = transform.rotation;
-                targetRotation = startRotation * Quaternion.Euler(90f, 0f, 0f);
+                targetRotation = startRotation * Quaternion.Euler(180f, 0f, 0f);
             }
         }
         else

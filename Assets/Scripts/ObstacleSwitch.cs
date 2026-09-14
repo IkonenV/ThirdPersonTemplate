@@ -4,6 +4,8 @@ public class ObstacleSwitch : MonoBehaviour
 {
     private bool movingToB = true;
     public float travelTime = 10;
+    public float maxTravelTime;
+    public float minTravelTime;
     private Vector3 upPosition;
     private Vector3 downPosition;
     private float t = 0f;
@@ -35,11 +37,14 @@ public class ObstacleSwitch : MonoBehaviour
         t = 0;
         if(levelActivate == true)
         {
+            travelTime = Random.Range(minTravelTime, maxTravelTime);
             movingUp = true;
         }
         else if(levelActivate == false)
         {
+            travelTime = Random.Range(minTravelTime, maxTravelTime);
             movingDown = true;
+
         }
     }
     public void MoveUp()
