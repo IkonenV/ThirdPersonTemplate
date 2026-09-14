@@ -9,10 +9,15 @@ public class FallingPlatform : MonoBehaviour
     Rigidbody rb;
     private Vector3 lastPosition;
     public Vector3 platformMovement;
+    public Vector3 startPosition;
+    public float positionResetTime;
+    public float resetTimer;
+    public bool alreadyFell;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        startPosition = transform.position;
         canFall = false;
         rb = GetComponent<Rigidbody>();
         lastPosition = gameObject.transform.position;
@@ -22,12 +27,22 @@ public class FallingPlatform : MonoBehaviour
     void Update()
     {
         fallDelayTimer -= Time.deltaTime;
-        if(canFall && fallDelayTimer < 0)
+        resetTimer -= Time.deltaTime;
+        if(canFall && fallDelayTimer < 0 && !alreadyFell)
         {
             rb.isKinematic = false;
+            resetTimer = positionResetTime;
+            alreadyFell = true;
         }
         platformMovement = transform.position - lastPosition;
         lastPosition = transform.position;
+        if(resetTimer < 0 && alreadyFell)
+        {
+            rb.isKinematic = true;
+            transform.position = startPosition;
+            alreadyFell = false;
+            canFall = false;
+        }
     }
     void OnTriggerEnter(Collider other)
     {

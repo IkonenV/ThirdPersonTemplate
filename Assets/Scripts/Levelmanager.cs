@@ -5,15 +5,26 @@ public class Levelmanager : MonoBehaviour
 
     public GameObject currentLevel;
     public GameObject[] levels;
+    public GameObject gateHitbox;
+    public float gateTime;
+    private float gateTimer;
+    bool gateActive;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        gateHitbox.SetActive(false);
+        gateActive = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        gateTimer -= Time.deltaTime;
+        if(gateActive && gateTimer < 0)
+        {
+            gateActive = false;
+            gateHitbox.SetActive(false);
+        }
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             Debug.Log("Vaihdetaan leveliin 1");
@@ -46,5 +57,10 @@ public class Levelmanager : MonoBehaviour
             ObstacleSwitch obstacleSwitch = child.GetComponent<ObstacleSwitch>();
             obstacleSwitch.ChangeLevel(true);
         }
+
+        gateHitbox.SetActive(true);
+        gateActive = true;
+        gateTimer = gateTime;
+
     }
 }

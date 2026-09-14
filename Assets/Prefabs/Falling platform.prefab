@@ -188,6 +188,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FallingPlatform
   fallDelay: 1
   platformMovement: {x: 0, y: 0, z: 0}
+  positionResetTime: 5
 --- !u!65 &4662362982117522875
 BoxCollider:
   m_ObjectHideFlags: 0
