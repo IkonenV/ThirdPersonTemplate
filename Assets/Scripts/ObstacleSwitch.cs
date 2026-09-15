@@ -11,6 +11,7 @@ public class ObstacleSwitch : MonoBehaviour
     private float t = 0f;
     bool movingUp;
     bool movingDown;
+    bool isMovingPlatformHeightFixed;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -39,12 +40,13 @@ public class ObstacleSwitch : MonoBehaviour
         {
             travelTime = Random.Range(minTravelTime, maxTravelTime);
             movingUp = true;
+            isMovingPlatformHeightFixed = false;
         }
         else if(levelActivate == false)
         {
             travelTime = Random.Range(minTravelTime, maxTravelTime);
             movingDown = true;
-
+            isMovingPlatformHeightFixed = false;
         }
     }
     public void MoveUp()
@@ -52,7 +54,33 @@ public class ObstacleSwitch : MonoBehaviour
          t += Time.deltaTime / travelTime;
 
         float smoothT = Mathf.SmoothStep(0f,1f, t);
-        transform.position = Vector3.Lerp(downPosition, upPosition, t);
+        if (gameObject.GetComponent<MovingPlatform>() != null && !isMovingPlatformHeightFixed)
+        {
+            MovingPlatform movingPlatform = GetComponent<MovingPlatform>();
+            //annetaan joku arvo
+            Vector3 desiredPointA = movingPlatform.pointAPosition;
+            Vector3 desiredPointB = movingPlatform.pointBPosition;
+            // annetaan oikea arvo
+            //if (!isMovingPlatformHeightFixed)
+            //{
+                //desiredPointA = new Vector3(movingPlatform.pointAPosition.x,movingPlatform.pointAPosition.y + 20, movingPlatform.pointAPosition.z);
+                //desiredPointB = new Vector3(movingPlatform.pointBPosition.x,movingPlatform.pointBPosition.y + 20, movingPlatform.pointBPosition.z);
+                //isMovingPlatformHeightFixed = true;
+                
+            //}
+            //movingPlatform.pointAPosition = Vector3.Lerp(movingPlatform.pointAPosition, desiredPointA, t);
+            //movingPlatform.pointBPosition = Vector3.Lerp(movingPlatform.pointBPosition, desiredPointB, t);
+
+
+
+            movingPlatform.pointAPosition = new Vector3(movingPlatform.pointAPosition.x,movingPlatform.pointAPosition.y + 20, movingPlatform.pointAPosition.z);
+            movingPlatform.pointBPosition = new Vector3(movingPlatform.pointBPosition.x,movingPlatform.pointBPosition.y + 20, movingPlatform.pointBPosition.z);
+            isMovingPlatformHeightFixed = true;
+        }
+        else
+        {
+            transform.position = Vector3.Lerp(downPosition, upPosition, t);
+        }
         if(Vector3.Distance(transform.position, upPosition) < 0.1f)
         {
             movingUp = false;
@@ -70,6 +98,14 @@ public class ObstacleSwitch : MonoBehaviour
             // make invisible
             movingDown = false;
         }
+        if (gameObject.GetComponent<MovingPlatform>() != null && !isMovingPlatformHeightFixed)
+        {
+            MovingPlatform movingPlatform = GetComponent<MovingPlatform>();
+            movingPlatform.pointAPosition = new Vector3(movingPlatform.pointAPosition.x,movingPlatform.pointAPosition.y - 20, movingPlatform.pointAPosition.z);
+            movingPlatform.pointBPosition = new Vector3(movingPlatform.pointBPosition.x,movingPlatform.pointBPosition.y - 20, movingPlatform.pointBPosition.z);
+            isMovingPlatformHeightFixed = true;
+        }
+        
     }
 
 }

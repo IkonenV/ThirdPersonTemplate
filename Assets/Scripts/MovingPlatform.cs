@@ -4,8 +4,8 @@ public class MovingPlatform : MonoBehaviour
 {
     public Transform pointA;
     public Transform pointB;
-    private Vector3 pointAPosition;
-    private Vector3 pointBPosition;
+    public Vector3 pointAPosition;
+    public Vector3 pointBPosition;
     private Vector3 lastPosition;
     private float t = 0f;
     private bool movingToB = true;
@@ -41,5 +41,6 @@ public class MovingPlatform : MonoBehaviour
         }
         platformMovement = transform.position - lastPosition;
         lastPosition = transform.position;
+
     }
 }

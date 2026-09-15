@@ -99,7 +99,7 @@ public class ThirdPersonController : MonoBehaviour
         RaycastHit hit;
         if(Physics.Raycast(transform.position, Vector3.down,out hit,0.15f, movingPlatformMask))
         {
-            if(hit.collider.TryGetComponent<MovingPlatform>(out MovingPlatform platform))
+            if(hit.collider.transform.parent.TryGetComponent<MovingPlatform>(out MovingPlatform platform))
             {
                 isPlayerOnMovingPlatform = true;
                 currentPlatform = platform;
@@ -125,6 +125,7 @@ public class ThirdPersonController : MonoBehaviour
             {
                 isPlayerOnFallingPlatform = true;
                 currentFallingPlatform = platform;
+                Debug.Log("Tippuvalla platformilla");
             }
             else
             {
