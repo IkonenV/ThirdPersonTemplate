@@ -88,7 +88,6 @@ public class ThirdPersonController : MonoBehaviour
     public void ApplyKnockback(Vector3 direction)
     {
         direction.y = 0.01f;
-        direction.z = 0;
         direction.Normalize();
 
         knockbackVelocity = direction * knockbackForce;

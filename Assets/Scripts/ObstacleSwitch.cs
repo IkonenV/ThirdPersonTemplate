@@ -12,6 +12,7 @@ public class ObstacleSwitch : MonoBehaviour
     bool movingUp;
     bool movingDown;
     bool isMovingPlatformHeightFixed;
+    bool isFallingPlatformFixed;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -19,6 +20,8 @@ public class ObstacleSwitch : MonoBehaviour
         movingUp = false;
         downPosition = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
         upPosition = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 20, gameObject.transform.position.z);
+        isMovingPlatformHeightFixed = false;
+        isFallingPlatformFixed = false;
     }
 
     // Update is called once per frame
@@ -41,12 +44,14 @@ public class ObstacleSwitch : MonoBehaviour
             travelTime = Random.Range(minTravelTime, maxTravelTime);
             movingUp = true;
             isMovingPlatformHeightFixed = false;
+            isFallingPlatformFixed = false;
         }
         else if(levelActivate == false)
         {
             travelTime = Random.Range(minTravelTime, maxTravelTime);
             movingDown = true;
             isMovingPlatformHeightFixed = false;
+            isFallingPlatformFixed = false;
         }
     }
     public void MoveUp()
@@ -85,6 +90,12 @@ public class ObstacleSwitch : MonoBehaviour
         {
             movingUp = false;
         }
+        if (gameObject.GetComponent<FallingPlatform>() != null && !isFallingPlatformFixed)
+        {
+            isFallingPlatformFixed = true;
+            FallingPlatform fallingPlatform = GetComponent<FallingPlatform>();
+            fallingPlatform.startPosition = new Vector3(fallingPlatform.startPosition.x, fallingPlatform.startPosition.y + 20, fallingPlatform.startPosition.z );
+        }
     }
     public void MoveDown()
     {
@@ -92,18 +103,27 @@ public class ObstacleSwitch : MonoBehaviour
          t += Time.deltaTime / travelTime;
 
         float smoothT = Mathf.SmoothStep(0f,1f, t);
-        transform.position = Vector3.Lerp(upPosition, downPosition, smoothT);
-        if(Vector3.Distance(transform.position, downPosition) < 0.1f)
-        {
-            // make invisible
-            movingDown = false;
-        }
         if (gameObject.GetComponent<MovingPlatform>() != null && !isMovingPlatformHeightFixed)
         {
             MovingPlatform movingPlatform = GetComponent<MovingPlatform>();
             movingPlatform.pointAPosition = new Vector3(movingPlatform.pointAPosition.x,movingPlatform.pointAPosition.y - 20, movingPlatform.pointAPosition.z);
             movingPlatform.pointBPosition = new Vector3(movingPlatform.pointBPosition.x,movingPlatform.pointBPosition.y - 20, movingPlatform.pointBPosition.z);
             isMovingPlatformHeightFixed = true;
+        }
+        else
+        {
+            transform.position = Vector3.Lerp(upPosition, downPosition, smoothT);
+        }
+        if(Vector3.Distance(transform.position, downPosition) < 0.1f)
+        {
+            // make invisible
+            movingDown = false;
+        }
+        if (gameObject.GetComponent<FallingPlatform>() != null && !isFallingPlatformFixed)
+        {
+            isFallingPlatformFixed = true;
+            FallingPlatform fallingPlatform = GetComponent<FallingPlatform>();
+            fallingPlatform.startPosition = new Vector3(fallingPlatform.startPosition.x, fallingPlatform.startPosition.y - 20, fallingPlatform.startPosition.z );
         }
         
     }
