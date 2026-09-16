@@ -24,6 +24,6 @@ public class Checkpoint : MonoBehaviour
     }
     public void CheckpointActivated()
     {
-        voidObject.respawnPoint.position = spawnPoint.position;
+        voidObject.respawnPoint = spawnPoint.position;
     }
 }
