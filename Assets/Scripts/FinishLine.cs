@@ -1,18 +1,20 @@
 using UnityEngine;
 
-public class Void : MonoBehaviour
+public class FinishLine : MonoBehaviour
 {
-    public Vector3 respawnPoint;
+    public Transform respawnPoint;
     private Transform startSpawnPoint;
     private GameObject player;
     CharacterController characterController;
+    Void voidScript;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        voidScript =  GameObject.FindGameObjectWithTag("Void").GetComponent<Void>();
         player = GameObject.FindGameObjectWithTag("Player");
         characterController = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController>();
         startSpawnPoint = GameObject.FindGameObjectWithTag("SpawnPoint").GetComponent<Transform>();
-        respawnPoint = startSpawnPoint.position;
+        respawnPoint = startSpawnPoint;
     }
 
     // Update is called once per frame
@@ -25,8 +27,13 @@ public class Void : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             characterController.enabled = false;
-            player.transform.position = respawnPoint;
+            voidScript.respawnPoint = startSpawnPoint.position;
+            player.transform.position = voidScript.respawnPoint;
             characterController.enabled = true;
         }
+    }
+    public void LevelFinished()
+    {
+        
     }
 }
