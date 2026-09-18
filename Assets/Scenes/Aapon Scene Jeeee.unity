@@ -17,7 +17,7 @@ RenderSettings:
   m_Fog: 1
   m_FogColor: {r: 0.5377358, g: 0.5377358, b: 0.5377358, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0
+  m_FogDensity: 0.02
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
@@ -359,6 +359,7 @@ MonoBehaviour:
   travelTime: 2
   maxTravelTime: 4
   minTravelTime: 2
+  meshRenderers: []
 --- !u!1 &62919635
 GameObject:
   m_ObjectHideFlags: 0
@@ -487,6 +488,7 @@ MonoBehaviour:
   travelTime: 2
   maxTravelTime: 4
   minTravelTime: 2
+  meshRenderers: []
 --- !u!1 &74956424
 GameObject:
   m_ObjectHideFlags: 0
@@ -587,6 +589,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a23c90afc3f59467dac49a07cb0fd375, type: 3}
+--- !u!1001 &92841643
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3593529702236502038, guid: 6caf0b28d81044e8eac4a656a5545683, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -55.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 3593529702236502038, guid: 6caf0b28d81044e8eac4a656a5545683, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 15.120202
+      objectReference: {fileID: 0}
+    - target: {fileID: 3593529702236502038, guid: 6caf0b28d81044e8eac4a656a5545683, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 3593529702236502038, guid: 6caf0b28d81044e8eac4a656a5545683, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9999963
+      objectReference: {fileID: 0}
+    - target: {fileID: 3593529702236502038, guid: 6caf0b28d81044e8eac4a656a5545683, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3593529702236502038, guid: 6caf0b28d81044e8eac4a656a5545683, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.0027166416
+      objectReference: {fileID: 0}
+    - target: {fileID: 3593529702236502038, guid: 6caf0b28d81044e8eac4a656a5545683, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3593529702236502038, guid: 6caf0b28d81044e8eac4a656a5545683, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3593529702236502038, guid: 6caf0b28d81044e8eac4a656a5545683, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -0.311
+      objectReference: {fileID: 0}
+    - target: {fileID: 3593529702236502038, guid: 6caf0b28d81044e8eac4a656a5545683, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4221307254314328748, guid: 6caf0b28d81044e8eac4a656a5545683, type: 3}
+      propertyPath: m_Name
+      value: Well-prop-changed
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6caf0b28d81044e8eac4a656a5545683, type: 3}
 --- !u!1 &135152978 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8417845088147070433, guid: 21f69af739f9c45f18ca90fcc0f53d99, type: 3}
@@ -949,6 +1008,7 @@ MonoBehaviour:
   travelTime: 2
   maxTravelTime: 4
   minTravelTime: 2
+  meshRenderers: []
 --- !u!1 &344237439
 GameObject:
   m_ObjectHideFlags: 0
@@ -1176,6 +1236,7 @@ MonoBehaviour:
   travelTime: 10
   maxTravelTime: 2
   minTravelTime: 4
+  meshRenderers: []
 --- !u!1001 &665533232
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1241,6 +1302,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a23c90afc3f59467dac49a07cb0fd375, type: 3}
+--- !u!1001 &718991089
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3593529702236502038, guid: 6caf0b28d81044e8eac4a656a5545683, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -60.152
+      objectReference: {fileID: 0}
+    - target: {fileID: 3593529702236502038, guid: 6caf0b28d81044e8eac4a656a5545683, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 15.120202
+      objectReference: {fileID: 0}
+    - target: {fileID: 3593529702236502038, guid: 6caf0b28d81044e8eac4a656a5545683, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -20.164
+      objectReference: {fileID: 0}
+    - target: {fileID: 3593529702236502038, guid: 6caf0b28d81044e8eac4a656a5545683, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.8253278
+      objectReference: {fileID: 0}
+    - target: {fileID: 3593529702236502038, guid: 6caf0b28d81044e8eac4a656a5545683, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3593529702236502038, guid: 6caf0b28d81044e8eac4a656a5545683, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.56465393
+      objectReference: {fileID: 0}
+    - target: {fileID: 3593529702236502038, guid: 6caf0b28d81044e8eac4a656a5545683, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3593529702236502038, guid: 6caf0b28d81044e8eac4a656a5545683, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3593529702236502038, guid: 6caf0b28d81044e8eac4a656a5545683, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 68.757
+      objectReference: {fileID: 0}
+    - target: {fileID: 3593529702236502038, guid: 6caf0b28d81044e8eac4a656a5545683, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4221307254314328748, guid: 6caf0b28d81044e8eac4a656a5545683, type: 3}
+      propertyPath: m_Name
+      value: Well-prop-changed (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6caf0b28d81044e8eac4a656a5545683, type: 3}
 --- !u!1 &745692385
 GameObject:
   m_ObjectHideFlags: 0
@@ -1446,6 +1564,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Void
   respawnPoint: {x: 0, y: 0, z: 0}
+  deathScreenObject: {fileID: 0}
 --- !u!1 &873362516
 GameObject:
   m_ObjectHideFlags: 0
@@ -1605,6 +1724,7 @@ MonoBehaviour:
   travelTime: 2
   maxTravelTime: 4
   minTravelTime: 2
+  meshRenderers: []
 --- !u!1 &915733035
 GameObject:
   m_ObjectHideFlags: 0
@@ -1733,6 +1853,7 @@ MonoBehaviour:
   travelTime: 2
   maxTravelTime: 4
   minTravelTime: 2
+  meshRenderers: []
 --- !u!1 &960377735
 GameObject:
   m_ObjectHideFlags: 0
@@ -1861,6 +1982,7 @@ MonoBehaviour:
   travelTime: 2
   maxTravelTime: 4
   minTravelTime: 2
+  meshRenderers: []
 --- !u!1 &1028687239
 GameObject:
   m_ObjectHideFlags: 0
@@ -2041,6 +2163,7 @@ MonoBehaviour:
   travelTime: 2
   maxTravelTime: 4
   minTravelTime: 2
+  meshRenderers: []
 --- !u!1 &1096404604
 GameObject:
   m_ObjectHideFlags: 0
@@ -2169,6 +2292,7 @@ MonoBehaviour:
   travelTime: 2
   maxTravelTime: 4
   minTravelTime: 2
+  meshRenderers: []
 --- !u!1001 &1142463485
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2615,6 +2739,7 @@ MonoBehaviour:
   travelTime: 2
   maxTravelTime: 4
   minTravelTime: 2
+  meshRenderers: []
 --- !u!1 &1284388261
 GameObject:
   m_ObjectHideFlags: 0
@@ -2743,6 +2868,7 @@ MonoBehaviour:
   travelTime: 2
   maxTravelTime: 4
   minTravelTime: 2
+  meshRenderers: []
 --- !u!1 &1310542964
 GameObject:
   m_ObjectHideFlags: 0
@@ -3130,6 +3256,7 @@ MonoBehaviour:
   travelTime: 2
   maxTravelTime: 4
   minTravelTime: 2
+  meshRenderers: []
 --- !u!1 &1687257489 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6519923514136011719, guid: 4cf4970d22f054add8d52c99e1393145, type: 3}
@@ -3263,6 +3390,7 @@ MonoBehaviour:
   travelTime: 2
   maxTravelTime: 4
   minTravelTime: 2
+  meshRenderers: []
 --- !u!1 &1811561869
 GameObject:
   m_ObjectHideFlags: 0
@@ -3391,6 +3519,7 @@ MonoBehaviour:
   travelTime: 2
   maxTravelTime: 4
   minTravelTime: 2
+  meshRenderers: []
 --- !u!1001 &1876891916
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3737,6 +3866,7 @@ MonoBehaviour:
   travelTime: 2
   maxTravelTime: 4
   minTravelTime: 2
+  meshRenderers: []
 --- !u!1 &1934973616
 GameObject:
   m_ObjectHideFlags: 0
@@ -4089,6 +4219,7 @@ MonoBehaviour:
   travelTime: 2
   maxTravelTime: 4
   minTravelTime: 2
+  meshRenderers: []
 --- !u!1 &2044619546
 GameObject:
   m_ObjectHideFlags: 0
@@ -4217,6 +4348,7 @@ MonoBehaviour:
   travelTime: 2
   maxTravelTime: 4
   minTravelTime: 2
+  meshRenderers: []
 --- !u!1 &2085739360
 GameObject:
   m_ObjectHideFlags: 0
@@ -4864,3 +4996,5 @@ SceneRoots:
   - {fileID: 1172919741}
   - {fileID: 745692386}
   - {fileID: 8501327300509258273}
+  - {fileID: 92841643}
+  - {fileID: 718991089}
