@@ -67,6 +67,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 68bdf00fe7f1e4376b6198a91c21be28, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7723063264480299142}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 68bdf00fe7f1e4376b6198a91c21be28, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -5117319809705796339}
     - targetCorrespondingSourceObject: {fileID: 6753007626837773922, guid: 68bdf00fe7f1e4376b6198a91c21be28, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1685081452120130367}
@@ -125,3 +128,15 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-5117319809705796339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9118788922546099946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1c4e575e805440d780fc9586cb778df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Lamp

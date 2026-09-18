@@ -25,25 +25,20 @@ public class Levelmanager : MonoBehaviour
             gateActive = false;
             gateHitbox.SetActive(false);
         }
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha1)&& gateTimer < 0)
         {
             Debug.Log("Vaihdetaan leveliin 1");
             ChangeLevel(1);
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKeyDown(KeyCode.Alpha2)&& gateTimer < 0)
         {
             Debug.Log("Vaihdetaan leveliin 2");
             ChangeLevel(2);
         }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
+        if (Input.GetKeyDown(KeyCode.Alpha3) && gateTimer < 0)
         {
             Debug.Log("Vaihdetaan leveliin 3");
             ChangeLevel(3);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            Debug.Log("Vaihdetaan leveliin 4");
-            ChangeLevel(4);
         }
     }
     public void ChangeLevel(int desiredLevel)
