@@ -9,11 +9,13 @@ public class Levelmanager : MonoBehaviour
     public float gateTime;
     private float gateTimer;
     bool gateActive;
+    bool canChangeLevel;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         gateHitbox.SetActive(false);
         gateActive = false;
+        canChangeLevel = true;
     }
 
     // Update is called once per frame
@@ -25,17 +27,17 @@ public class Levelmanager : MonoBehaviour
             gateActive = false;
             gateHitbox.SetActive(false);
         }
-        if (Input.GetKeyDown(KeyCode.Alpha1)&& gateTimer < 0)
+        if (Input.GetKeyDown(KeyCode.Alpha1)&& gateTimer < 0 && canChangeLevel)
         {
             Debug.Log("Vaihdetaan leveliin 1");
             ChangeLevel(1);
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2)&& gateTimer < 0)
+        if (Input.GetKeyDown(KeyCode.Alpha2)&& gateTimer < 0 && canChangeLevel)
         {
             Debug.Log("Vaihdetaan leveliin 2");
             ChangeLevel(2);
         }
-        if (Input.GetKeyDown(KeyCode.Alpha3) && gateTimer < 0)
+        if (Input.GetKeyDown(KeyCode.Alpha3) && gateTimer < 0 && canChangeLevel)
         {
             Debug.Log("Vaihdetaan leveliin 3");
             ChangeLevel(3);
@@ -62,5 +64,13 @@ public class Levelmanager : MonoBehaviour
         gateActive = true;
         gateTimer = gateTime;
 
+    }
+    public void CantChangeLevel()
+    {
+        canChangeLevel = !canChangeLevel;
+    }
+    public void CanChangeLevel()
+    {
+        canChangeLevel = true;
     }
 }

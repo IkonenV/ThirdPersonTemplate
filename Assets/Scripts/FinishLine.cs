@@ -7,9 +7,11 @@ public class FinishLine : MonoBehaviour
     private GameObject player;
     CharacterController characterController;
     Void voidScript;
+    public Levelmanager levelmanager;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        levelmanager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<Levelmanager>();
         voidScript =  GameObject.FindGameObjectWithTag("Void").GetComponent<Void>();
         player = GameObject.FindGameObjectWithTag("Player");
         characterController = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController>();
@@ -30,6 +32,7 @@ public class FinishLine : MonoBehaviour
             voidScript.respawnPoint = startSpawnPoint.position;
             player.transform.position = voidScript.respawnPoint;
             characterController.enabled = true;
+            levelmanager.CanChangeLevel();
         }
     }
     public void LevelFinished()
