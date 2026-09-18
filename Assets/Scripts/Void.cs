@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Void : MonoBehaviour
@@ -6,6 +7,7 @@ public class Void : MonoBehaviour
     private Transform startSpawnPoint;
     private GameObject player;
     CharacterController characterController;
+    public GameObject deathScreenObject;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -24,9 +26,21 @@ public class Void : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            characterController.enabled = false;
-            player.transform.position = respawnPoint;
-            characterController.enabled = true;
+            Death();
         }
+    }
+    public void Death()
+    {
+        deathScreenObject.SetActive(true);
+        StartCoroutine(DeathTime());
+    }
+    public IEnumerator DeathTime()
+    {
+        yield return new WaitForSeconds(3);
+        
+        deathScreenObject.SetActive(false);
+        characterController.enabled = false;
+        player.transform.position = respawnPoint;
+        characterController.enabled = true;
     }
 }
