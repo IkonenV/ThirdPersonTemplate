@@ -11,6 +11,11 @@ public class RotatingPlatform : MonoBehaviour
 
     private Quaternion startRotation;
     private Quaternion targetRotation;
+    Void voidObject;
+    void Start()
+    {
+        voidObject = GameObject.FindGameObjectWithTag("Void").GetComponent<Void>();
+    }
 
     void Update()
     {
@@ -55,6 +60,7 @@ public class RotatingPlatform : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("Kuolit pelle :3");
+            voidObject.Death();
         }
     }
 }

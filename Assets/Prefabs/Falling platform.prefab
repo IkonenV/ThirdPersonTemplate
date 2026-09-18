@@ -125,6 +125,7 @@ GameObject:
   - component: {fileID: 4909312140020859648}
   - component: {fileID: 624531042305398940}
   - component: {fileID: 4662362982117522875}
+  - component: {fileID: 5389290454697003952}
   m_Layer: 9
   m_Name: Falling platform
   m_TagString: Untagged
@@ -214,3 +215,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.7913691, y: 0.67832303, z: 1.9289055}
   m_Center: {x: -0.0056303144, y: 0.62584746, z: -0.027682781}
+--- !u!114 &5389290454697003952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6200515515653338492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80647d66b93364e009294af5dcabc253, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ObstacleSwitch
+  travelTime: 10
+  maxTravelTime: 4
+  minTravelTime: 2
+  meshRenderers:
+  - {fileID: 7161804014518925876}

@@ -41,6 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7009530963456515237}
   - component: {fileID: 6608897124150635610}
+  - component: {fileID: 7217194008124840047}
   m_Layer: 7
   m_Name: Moving Platform
   m_TagString: Untagged
@@ -80,8 +81,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MovingPlatform
   pointA: {fileID: 3559080486060986350}
   pointB: {fileID: 4523624574577673052}
+  pointAPosition: {x: 0, y: 0, z: 0}
+  pointBPosition: {x: 0, y: 0, z: 0}
   travelTime: 5
   platformMovement: {x: 0, y: 0, z: 0}
+--- !u!114 &7217194008124840047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7132262246370233491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80647d66b93364e009294af5dcabc253, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ObstacleSwitch
+  travelTime: 10
+  maxTravelTime: 4
+  minTravelTime: 2
+  meshRenderers:
+  - {fileID: 8200764985192016496}
 --- !u!1 &7804436495805699963
 GameObject:
   m_ObjectHideFlags: 0

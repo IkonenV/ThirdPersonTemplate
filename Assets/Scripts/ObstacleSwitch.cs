@@ -13,15 +13,20 @@ public class ObstacleSwitch : MonoBehaviour
     bool movingDown;
     bool isMovingPlatformHeightFixed;
     bool isFallingPlatformFixed;
+    public MeshRenderer[] meshRenderers;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         movingDown = false;
         movingUp = false;
         downPosition = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
-        upPosition = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 20, gameObject.transform.position.z);
+        upPosition = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 30, gameObject.transform.position.z);
         isMovingPlatformHeightFixed = false;
         isFallingPlatformFixed = false;
+        foreach(MeshRenderer i in meshRenderers)
+        {
+            i.enabled = false;
+        }
     }
 
     // Update is called once per frame
@@ -45,6 +50,10 @@ public class ObstacleSwitch : MonoBehaviour
             movingUp = true;
             isMovingPlatformHeightFixed = false;
             isFallingPlatformFixed = false;
+            foreach(MeshRenderer i in meshRenderers)
+            {
+                i.enabled = true;
+            }
         }
         else if(levelActivate == false)
         {
@@ -78,8 +87,8 @@ public class ObstacleSwitch : MonoBehaviour
 
 
 
-            movingPlatform.pointAPosition = new Vector3(movingPlatform.pointAPosition.x,movingPlatform.pointAPosition.y + 20, movingPlatform.pointAPosition.z);
-            movingPlatform.pointBPosition = new Vector3(movingPlatform.pointBPosition.x,movingPlatform.pointBPosition.y + 20, movingPlatform.pointBPosition.z);
+            movingPlatform.pointAPosition = new Vector3(movingPlatform.pointAPosition.x,movingPlatform.pointAPosition.y + 30, movingPlatform.pointAPosition.z);
+            movingPlatform.pointBPosition = new Vector3(movingPlatform.pointBPosition.x,movingPlatform.pointBPosition.y + 30, movingPlatform.pointBPosition.z);
             isMovingPlatformHeightFixed = true;
         }
         else
@@ -94,7 +103,7 @@ public class ObstacleSwitch : MonoBehaviour
         {
             isFallingPlatformFixed = true;
             FallingPlatform fallingPlatform = GetComponent<FallingPlatform>();
-            fallingPlatform.startPosition = new Vector3(fallingPlatform.startPosition.x, fallingPlatform.startPosition.y + 20, fallingPlatform.startPosition.z );
+            fallingPlatform.startPosition = new Vector3(fallingPlatform.startPosition.x, fallingPlatform.startPosition.y + 30, fallingPlatform.startPosition.z );
         }
     }
     public void MoveDown()
@@ -106,8 +115,8 @@ public class ObstacleSwitch : MonoBehaviour
         if (gameObject.GetComponent<MovingPlatform>() != null && !isMovingPlatformHeightFixed)
         {
             MovingPlatform movingPlatform = GetComponent<MovingPlatform>();
-            movingPlatform.pointAPosition = new Vector3(movingPlatform.pointAPosition.x,movingPlatform.pointAPosition.y - 20, movingPlatform.pointAPosition.z);
-            movingPlatform.pointBPosition = new Vector3(movingPlatform.pointBPosition.x,movingPlatform.pointBPosition.y - 20, movingPlatform.pointBPosition.z);
+            movingPlatform.pointAPosition = new Vector3(movingPlatform.pointAPosition.x,movingPlatform.pointAPosition.y - 30, movingPlatform.pointAPosition.z);
+            movingPlatform.pointBPosition = new Vector3(movingPlatform.pointBPosition.x,movingPlatform.pointBPosition.y - 30, movingPlatform.pointBPosition.z);
             isMovingPlatformHeightFixed = true;
         }
         else
@@ -116,14 +125,17 @@ public class ObstacleSwitch : MonoBehaviour
         }
         if(Vector3.Distance(transform.position, downPosition) < 0.1f)
         {
-            // make invisible
             movingDown = false;
+            foreach(MeshRenderer i in meshRenderers)
+            {
+                i.enabled = false;
+            }
         }
         if (gameObject.GetComponent<FallingPlatform>() != null && !isFallingPlatformFixed)
         {
             isFallingPlatformFixed = true;
             FallingPlatform fallingPlatform = GetComponent<FallingPlatform>();
-            fallingPlatform.startPosition = new Vector3(fallingPlatform.startPosition.x, fallingPlatform.startPosition.y - 20, fallingPlatform.startPosition.z );
+            fallingPlatform.startPosition = new Vector3(fallingPlatform.startPosition.x, fallingPlatform.startPosition.y - 30, fallingPlatform.startPosition.z );
         }
         
     }
