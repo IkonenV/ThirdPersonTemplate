@@ -46,7 +46,10 @@ public class FallingPlatform : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag("Player"))
+        {
         canFall = true;
-        fallDelayTimer = fallDelay;
+        fallDelayTimer = fallDelay;  
+        }
     }
 }

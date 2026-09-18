@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Void : MonoBehaviour
 {
-    public Transform respawnPoint;
+    public Vector3 respawnPoint;
     private Transform startSpawnPoint;
     private GameObject player;
     CharacterController characterController;
@@ -12,7 +12,7 @@ public class Void : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         characterController = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController>();
         startSpawnPoint = GameObject.FindGameObjectWithTag("SpawnPoint").GetComponent<Transform>();
-        respawnPoint = startSpawnPoint;
+        respawnPoint = startSpawnPoint.position;
     }
 
     // Update is called once per frame
@@ -25,7 +25,7 @@ public class Void : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             characterController.enabled = false;
-            player.transform.position = respawnPoint.position;
+            player.transform.position = respawnPoint;
             characterController.enabled = true;
         }
     }

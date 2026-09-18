@@ -40,6 +40,11 @@ public class Levelmanager : MonoBehaviour
             Debug.Log("Vaihdetaan leveliin 3");
             ChangeLevel(3);
         }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            Debug.Log("Vaihdetaan leveliin 4");
+            ChangeLevel(4);
+        }
     }
     public void ChangeLevel(int desiredLevel)
     {
