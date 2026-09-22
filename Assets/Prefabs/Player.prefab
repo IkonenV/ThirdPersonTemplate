@@ -4175,6 +4175,7 @@ GameObject:
   - component: {fileID: 8182557909253135303}
   - component: {fileID: 7801519148657872305}
   - component: {fileID: 6911928036561610612}
+  - component: {fileID: -2723419996711413874}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -4233,6 +4234,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   currentFallingPlatform: {fileID: 0}
+  knockbackForce: 10
+  knockbackDuration: 0.2
 --- !u!114 &7801519148657872305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4336,6 +4339,18 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &-2723419996711413874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7945958367166174306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccb65120d23e7467e82999800628e052, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInventory
 --- !u!1 &8227052980715703968
 GameObject:
   m_ObjectHideFlags: 0

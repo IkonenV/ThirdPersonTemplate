@@ -59,7 +59,6 @@ public class RotatingPlatform : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Kuolit pelle :3");
             voidObject.Death();
         }
     }
