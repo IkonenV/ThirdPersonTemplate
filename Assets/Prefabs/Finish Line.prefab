@@ -83,8 +83,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObstacleSwitch
   travelTime: 10
-  maxTravelTime: 0
-  minTravelTime: 0
+  maxTravelTime: 4
+  minTravelTime: 2
   meshRenderers:
   - {fileID: 6034913206560248741}
 --- !u!1001 &4900413612573904673

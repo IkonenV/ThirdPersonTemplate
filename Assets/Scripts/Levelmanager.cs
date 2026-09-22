@@ -10,6 +10,8 @@ public class Levelmanager : MonoBehaviour
     private float gateTimer;
     bool gateActive;
     bool canChangeLevel;
+
+    public GameObject levelSelectScreen;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -29,18 +31,19 @@ public class Levelmanager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Alpha1)&& gateTimer < 0 && canChangeLevel)
         {
-            Debug.Log("Vaihdetaan leveliin 1");
             ChangeLevel(1);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2)&& gateTimer < 0 && canChangeLevel)
         {
-            Debug.Log("Vaihdetaan leveliin 2");
             ChangeLevel(2);
         }
         if (Input.GetKeyDown(KeyCode.Alpha3) && gateTimer < 0 && canChangeLevel)
         {
-            Debug.Log("Vaihdetaan leveliin 3");
             ChangeLevel(3);
+        }
+        if(Input.GetKeyDown(KeyCode.E) && canChangeLevel)
+        {
+            EnableLevelSelect();
         }
     }
     public void ChangeLevel(int desiredLevel)
@@ -72,5 +75,13 @@ public class Levelmanager : MonoBehaviour
     public void CanChangeLevel()
     {
         canChangeLevel = true;
+    }
+    public void LevelButtonPressed(int number)
+    {
+        ChangeLevel(number);
+    }
+    public void EnableLevelSelect()
+    {
+        
     }
 }

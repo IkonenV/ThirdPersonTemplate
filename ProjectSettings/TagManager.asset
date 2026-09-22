@@ -7,6 +7,7 @@ TagManager:
   - SpawnPoint
   - Void
   - LevelManager
+  - LogText
   layers:
   - Default
   - TransparentFX
