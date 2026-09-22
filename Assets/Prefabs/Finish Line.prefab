@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5708287561331040871}
   - component: {fileID: 5789500839105067115}
   - component: {fileID: 4405414495197661501}
+  - component: {fileID: 2594274328376415951}
   m_Layer: 0
   m_Name: Finish Line
   m_TagString: Untagged
@@ -69,6 +70,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FinishLine
   respawnPoint: {fileID: 0}
   levelmanager: {fileID: 0}
+--- !u!114 &2594274328376415951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7270097112310808911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80647d66b93364e009294af5dcabc253, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ObstacleSwitch
+  travelTime: 10
+  maxTravelTime: 0
+  minTravelTime: 0
+  meshRenderers:
+  - {fileID: 6034913206560248741}
 --- !u!1001 &4900413612573904673
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -133,5 +151,10 @@ PrefabInstance:
 --- !u!4 &4867121583032477898 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c79564b4ece54484f8acba5d8a9851d6, type: 3}
+  m_PrefabInstance: {fileID: 4900413612573904673}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &6034913206560248741 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: c79564b4ece54484f8acba5d8a9851d6, type: 3}
   m_PrefabInstance: {fileID: 4900413612573904673}
   m_PrefabAsset: {fileID: 0}
