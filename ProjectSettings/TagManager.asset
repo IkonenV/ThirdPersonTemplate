@@ -8,6 +8,8 @@ TagManager:
   - Void
   - LevelManager
   - LogText
+  - LevelSelect
+  - Knight
   layers:
   - Default
   - TransparentFX
