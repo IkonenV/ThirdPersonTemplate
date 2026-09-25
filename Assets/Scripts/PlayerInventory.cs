@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
 {
-    private int logsInInventory;
+    public int logsInInventory = 0;
     private TMP_Text logText;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -18,7 +18,13 @@ public class PlayerInventory : MonoBehaviour
     }
     public void LogCollected(int amount)
     {
-        logsInInventory += amount;
+        logsInInventory += 1;
+        logText.text = logsInInventory.ToString();
+        Debug.Log(logsInInventory);
+    }
+    public void LogUsed(int amount)
+    {
+        logsInInventory -= amount;
         logText.text = logsInInventory.ToString();
     }
 }
