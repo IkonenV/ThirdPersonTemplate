@@ -191,6 +191,17 @@ public class ThirdPersonController : MonoBehaviour
             jumpHeld = false;
         }
     }
+    public void OnDodge(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            Dodge();
+        }
+    }
+    public void Dodge()
+    {
+        animator.SetTrigger("Dodge");
+    }
 
 
 

@@ -19,8 +19,8 @@ public class LogStack : MonoBehaviour
     {
         if (Gamepad.current.buttonWest.wasPressedThisFrame && canInteract && playerInventory.logsInInventory > 0 || Input.GetKeyDown(KeyCode.E) && canInteract && playerInventory.logsInInventory > 0)
         {
-            //PlaceLog();
-            //playerInventory.LogUsed(1);
+            PlaceLog();
+            playerInventory.LogUsed(1);
         }
     }
     void OnTriggerEnter(Collider other)

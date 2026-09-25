@@ -32,7 +32,6 @@ public class FinishLine : MonoBehaviour
             voidScript.respawnPoint = startSpawnPoint.position;
             player.transform.position = voidScript.respawnPoint;
             characterController.enabled = true;
-            levelmanager.CanChangeLevel();
         }
     }
     public void LevelFinished()

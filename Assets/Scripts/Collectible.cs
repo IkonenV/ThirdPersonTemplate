@@ -9,7 +9,7 @@ public class Collectible : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        playerInventory = GameObject.FindGameObjectWithTag("Player").AddComponent<PlayerInventory>();
+        playerInventory = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInventory>();
     }
 
     // Update is called once per frame
