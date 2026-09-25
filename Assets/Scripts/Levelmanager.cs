@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 
 public class Levelmanager : MonoBehaviour
 {
@@ -10,14 +12,24 @@ public class Levelmanager : MonoBehaviour
     private float gateTimer;
     bool gateActive;
     bool canChangeLevel;
+    Transform player;
+    Transform knight;
 
     public GameObject levelSelectScreen;
+    public GameObject firstButton;
+    bool levelSelectActive = false;
+
+    public PlayerInput playerInput;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         gateHitbox.SetActive(false);
         gateActive = false;
-        canChangeLevel = true;
+        canChangeLevel = false;
+        levelSelectScreen = GameObject.FindGameObjectWithTag("LevelSelect");
+        levelSelectScreen.SetActive(false);
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        knight = GameObject.FindGameObjectWithTag("Knight").GetComponent<Transform>();
     }
 
     // Update is called once per frame
@@ -41,9 +53,23 @@ public class Levelmanager : MonoBehaviour
         {
             ChangeLevel(3);
         }
-        if(Input.GetKeyDown(KeyCode.E) && canChangeLevel)
+
+        
+
+    }
+    private void OnEnable()
+    {
+        EventSystem.current.SetSelectedGameObject(firstButton);
+    }
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+        if (context.performed && canChangeLevel && !levelSelectActive)
         {
             EnableLevelSelect();
+        }
+        else if(context.performed && levelSelectActive)
+        {
+            DisableLevelSelect();
         }
     }
     public void ChangeLevel(int desiredLevel)
@@ -70,7 +96,7 @@ public class Levelmanager : MonoBehaviour
     }
     public void CantChangeLevel()
     {
-        canChangeLevel = !canChangeLevel;
+        canChangeLevel = false;
     }
     public void CanChangeLevel()
     {
@@ -79,9 +105,18 @@ public class Levelmanager : MonoBehaviour
     public void LevelButtonPressed(int number)
     {
         ChangeLevel(number);
+        DisableLevelSelect();
     }
     public void EnableLevelSelect()
     {
-        
+        levelSelectScreen.SetActive(true);
+        levelSelectActive = true;
+        playerInput.SwitchCurrentActionMap("UI");
+    }
+    public void DisableLevelSelect()
+    {
+        levelSelectScreen.SetActive(false);
+        levelSelectActive = false;
+        playerInput.SwitchCurrentActionMap("Player");
     }
 }

@@ -21,4 +21,6 @@ public class LevelChangeTrigger : MonoBehaviour
             levelmanager.CantChangeLevel();
         }
     }
+
+    //ei käytössä
 }
