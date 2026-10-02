@@ -14,7 +14,10 @@ public class PlayerInventory : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(logsInInventory == 0)
+        {
+            logText.text = "";
+        }
     }
     public void LogCollected(int amount)
     {
